@@ -1,187 +1,169 @@
+import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { useMutation } from "@tanstack/react-query";
+import { supabase } from "@/integrations/supabase/client";
+import { Button } from "@/components/ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from "@/components/ui/form";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useToast } from "@/components/ui/use-toast";
+import type { Database } from "@/integrations/supabase/types";
 
-import { useState } from 'react';
-import { useToast } from '@/hooks/use-toast';
+type ContactMessage = Database['public']['Tables']['contact_messages']['Insert'];
+
+const formSchema = z.object({
+  full_name: z.string().min(2, "Name must be at least 2 characters"),
+  email: z.string().regex(/^[A-Za-z0-9._+%-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, "Please enter a valid email address"),
+  phone: z.string().regex(/^\+?[0-9 ()-]{8,}$/, "Please enter a valid phone number (e.g., +44 20 1234-5678)"),
+  company: z.string().min(2, "Company name must be at least 2 characters"),
+  message: z.string().min(10, "Message must be at least 10 characters"),
+});
 
 const ContactForm = () => {
-  const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    company: '',
-    service: '',
-    message: ''
-  });
-  
   const [isSubmitting, setIsSubmitting] = useState(false);
-  
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
-  };
-  
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    
-    // Simulate form submission
-    setTimeout(() => {
+  const { toast } = useToast();
+
+  const form = useForm<ContactMessage>({
+    resolver: zodResolver(formSchema),
+    defaultValues: {
+      full_name: "",
+      email: "",
+      phone: "",
+      company: "",
+      message: "",
+      status: "pending",
+    },
+  });
+
+  const { mutate: submitContact } = useMutation({
+    mutationFn: async (data: ContactMessage) => {
+      const { error } = await supabase
+        .from('contact_messages')
+        .insert([data]);
+      
+      if (error) throw error;
+    },
+    onSuccess: () => {
       toast({
-        title: "Consultation Request Received",
-        description: "Our security team will contact you within 24 hours to discuss your requirements.",
+        title: "Message Sent Successfully",
+        description: "Thank you for contacting us. We'll get back to you within 24 hours.",
       });
-      
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        company: '',
-        service: '',
-        message: ''
-      });
-      
+      form.reset();
       setIsSubmitting(false);
-    }, 1500);
+    },
+    onError: (error) => {
+      toast({
+        title: "Error Sending Message",
+        description: "There was a problem sending your message. Please try again.",
+        variant: "destructive",
+      });
+      setIsSubmitting(false);
+      console.error("Contact form error:", error);
+    },
+  });
+
+  const onSubmit = (data: ContactMessage) => {
+    setIsSubmitting(true);
+    submitContact(data);
   };
-  
+
   return (
-    <form onSubmit={handleSubmit} className="bg-white rounded-lg p-8 card-shadow">
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
-        <div>
-          <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
-            Full Name *
-          </label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800"
-            placeholder="John Doe"
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <FormField
+            control={form.control}
+            name="full_name"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Full Name</FormLabel>
+                <FormControl>
+                  <Input placeholder="John Doe" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-1">
-            Email Address *
-          </label>
-          <input
-            type="email"
-            id="email"
+
+          <FormField
+            control={form.control}
             name="email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800"
-            placeholder="your@email.com"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Email</FormLabel>
+                <FormControl>
+                  <Input type="email" placeholder="john@example.com" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="phone" className="block text-sm font-medium text-gray-700 mb-1">
-            Phone Number *
-          </label>
-          <input
-            type="tel"
-            id="phone"
+
+          <FormField
+            control={form.control}
             name="phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800"
-            placeholder="+44 123 456 7890"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Phone Number</FormLabel>
+                <FormControl>
+                  <Input placeholder="+44 20 1234-5678" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
-        </div>
-        
-        <div>
-          <label htmlFor="company" className="block text-sm font-medium text-gray-700 mb-1">
-            Company
-          </label>
-          <input
-            type="text"
-            id="company"
+
+          <FormField
+            control={form.control}
             name="company"
-            value={formData.company}
-            onChange={handleChange}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800"
-            placeholder="Your Company Ltd"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Company</FormLabel>
+                <FormControl>
+                  <Input placeholder="Company Name" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
           />
         </div>
-        
-        <div className="md:col-span-2">
-          <label htmlFor="service" className="block text-sm font-medium text-gray-700 mb-1">
-            Service of Interest *
-          </label>
-          <select
-            id="service"
-            name="service"
-            value={formData.service}
-            onChange={handleChange}
-            required
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800 bg-white"
-          >
-            <option value="" disabled>Select a service</option>
-            <option value="vault-storage">Secure Vault Storage</option>
-            <option value="bullion-transport">Bullion Transportation</option>
-            <option value="global-protection">Global Asset Protection</option>
-            <option value="private-escort">Private Security Escort</option>
-            <option value="goods-logistics">High-Value Goods Logistics</option>
-            <option value="custom">Custom Security Solution</option>
-          </select>
-        </div>
-        
-        <div className="md:col-span-2">
-          <label htmlFor="message" className="block text-sm font-medium text-gray-700 mb-1">
-            Your Requirements *
-          </label>
-          <textarea
-            id="message"
-            name="message"
-            value={formData.message}
-            onChange={handleChange}
-            required
-            rows={5}
-            className="w-full px-4 py-3 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-navy-800"
-            placeholder="Please describe your security requirements in detail..."
-          ></textarea>
-        </div>
-      </div>
-      
-      <div className="flex items-center mb-6">
-        <input 
-          type="checkbox" 
-          id="privacy" 
-          required
-          className="h-4 w-4 text-navy-800 border-gray-300 rounded"
+
+        <FormField
+          control={form.control}
+          name="message"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Message</FormLabel>
+              <FormControl>
+                <Textarea 
+                  placeholder="Please describe how we can help you..." 
+                  className="min-h-[150px]"
+                  {...field} 
+                />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
         />
-        <label htmlFor="privacy" className="ml-2 text-sm text-gray-600">
-          I agree to the <a href="/privacy" className="text-navy-800 underline">privacy policy</a> and consent to being contacted regarding my inquiry.
-        </label>
-      </div>
-      
-      <button
-        type="submit"
-        disabled={isSubmitting}
-        className="btn-primary w-full flex items-center justify-center"
-      >
-        {isSubmitting ? (
-          <>
-            <svg className="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
-            </svg>
-            Processing...
-          </>
-        ) : (
-          'Schedule a Consultation'
-        )}
-      </button>
-    </form>
+
+        <Button 
+          type="submit" 
+          className="w-full md:w-auto bg-navy-800 hover:bg-navy-900"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? "Sending..." : "Send Message"}
+        </Button>
+      </form>
+    </Form>
   );
 };
 

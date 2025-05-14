@@ -9,6 +9,7 @@ import Index from "./pages/Index";
 import About from "./pages/About";
 import Services from "./pages/Services";
 import Contact from "./pages/Contact";
+import AssetTracker from "./pages/AssetTracker";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -20,7 +21,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          <Route path="/" element={<PageLayout><Index /></PageLayout>} />
           <Route 
             path="/about" 
             element={
@@ -42,6 +43,14 @@ const App = () => (
             element={
               <PageLayout>
                 <Contact />
+              </PageLayout>
+            } 
+          />
+          <Route 
+            path="/asset-tracker" 
+            element={
+              <PageLayout>
+                <AssetTracker />
               </PageLayout>
             } 
           />

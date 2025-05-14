@@ -1,19 +1,13 @@
-
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
+import PageHeader from "@/components/PageHeader";
 import CtaSection from "@/components/CtaSection";
 import { Lock, Briefcase, Shield, Users, Key, ArrowRight } from "lucide-react";
 
 const Services = () => {
   return (
     <>
-      <Navbar />
-      <Hero
+      <PageHeader
         title="Our Security Services"
         subtitle="Comprehensive security solutions for high-value assets, tailored to the unique needs of our discerning clients."
-        image="https://images.unsplash.com/photo-1633158829875-e5316a358c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80"
-        showCta={false}
       />
 
       <section className="section-padding bg-white" id="vault-storage">
@@ -72,7 +66,29 @@ const Services = () => {
               </a>
             </div>
             
-            <div className="bg-navy-100 h-96 rounded-lg"></div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1683984210404-d9fd70a40d02?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8U2VjdXJlJTIwVmF1bHQlMjBTdG9yYWdlfGVufDB8fDB8fHww" 
+                  alt="Secure Vault Facility" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://asargold.com/images/speasyimagegallery/albums/8/images/gold-w1.jpg" 
+                  alt="Security Vault Interface" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden col-span-2">
+                <img 
+                  src="https://images.unsplash.com/photo-1689307172671-bdeebee149ae?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTZ8fFNlY3VyZSUyMFZhdWx0JTIwU3RvcmFnZXxlbnwwfHwwfHx8MA%3D%3D" 
+                  alt="Secure Storage Facility" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -80,7 +96,29 @@ const Services = () => {
       <section className="section-padding bg-gray-50" id="bullion-transport">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 bg-navy-100 h-96 rounded-lg"></div>
+            <div className="order-2 lg:order-1 grid grid-cols-2 gap-4">
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1746363206246-e2d29337e255?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NHx8QXJtb3JlZCUyMFRydWNrfGVufDB8fDB8fHww" 
+                  alt="Armored Transport Vehicle" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://envestreetfinancial.com/wp-content/uploads/2023/06/E4Fh7WjXEAYGynt-768x469.jpg" 
+                  alt="Secure Bullion Handling" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden col-span-2">
+                <img 
+                  src="https://i.etsystatic.com/18944887/r/il/be84d6/6194947096/il_570xN.6194947096_kmd9.jpg" 
+                  alt="Bullion Transportation" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
             
             <div className="order-1 lg:order-2">
               <div className="flex items-center mb-6">
@@ -194,7 +232,29 @@ const Services = () => {
               </a>
             </div>
             
-            <div className="bg-navy-100 h-96 rounded-lg"></div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1487252665478-49b61b47f302?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
+                  alt="Global Security Operations Center" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img 
+                  src="https://images.unsplash.com/photo-1592595896616-c37162298647?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
+                  alt="International Asset Monitoring" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden col-span-2">
+                <img 
+                  src="https://images.unsplash.com/photo-1551038247-3d9af20df552?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1280&q=80" 
+                  alt="Global Asset Protection" 
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -202,7 +262,13 @@ const Services = () => {
       <section className="section-padding bg-gray-50" id="security-escort">
         <div className="container mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-            <div className="order-2 lg:order-1 bg-navy-100 h-96 rounded-lg"></div>
+            <div className="order-2 lg:order-1 bg-navy-100 h-96 rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1521791055366-0d553872125f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2069&q=80" 
+                alt="Private Security Escort" 
+                className="w-full h-full object-cover"
+              />
+            </div>
             
             <div className="order-1 lg:order-2">
               <div className="flex items-center mb-6">
@@ -316,13 +382,18 @@ const Services = () => {
               </a>
             </div>
             
-            <div className="bg-navy-100 h-96 rounded-lg"></div>
+            <div className="bg-navy-100 h-96 rounded-lg overflow-hidden">
+              <img 
+                src="https://images.unsplash.com/photo-1494891848038-7bd202a2afeb?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                alt="High-Value Goods Logistics" 
+                className="w-full h-full object-cover"
+              />
+            </div>
           </div>
         </div>
       </section>
 
       <CtaSection />
-      <Footer />
     </>
   );
 };

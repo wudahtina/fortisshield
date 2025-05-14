@@ -1,6 +1,4 @@
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import TeamSection from "@/components/TeamSection";
 import CtaSection from "@/components/CtaSection";
@@ -9,7 +7,6 @@ import { Shield, Award, Briefcase, Users, Check } from "lucide-react";
 const About = () => {
   return (
     <>
-      <Navbar />
       <Hero
         title="About Fortis Shield Security"
         subtitle="With decades of experience in the security industry, we provide unparalleled protection for your most valuable assets."
@@ -197,7 +194,6 @@ const About = () => {
 
       <TeamSection />
       <CtaSection />
-      <Footer />
     </>
   );
 };

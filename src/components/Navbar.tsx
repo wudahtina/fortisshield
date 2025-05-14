@@ -1,115 +1,108 @@
 
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import { cn } from "@/lib/utils";
-import { Shield, Menu, X } from "lucide-react";
+import { useState } from "react";
+import { Link, useLocation } from "react-router-dom";
+import { Menu, X } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { ShieldCheck } from "lucide-react";
 
 const Navbar = () => {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 10) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
+  const isActive = (path: string) => {
+    return location.pathname === path;
+  };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
-
-  const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
-
-  const navLinks = [
+  const links = [
     { name: "Home", path: "/" },
-    { name: "About Us", path: "/about" },
     { name: "Services", path: "/services" },
+    { name: "About", path: "/about" },
     { name: "Contact", path: "/contact" },
+    { name: "Asset Tracker", path: "/asset-tracker" }
   ];
 
   return (
-    <header
-      className={cn(
-        "fixed w-full z-50 transition-all duration-300",
-        isScrolled
-          ? "bg-white shadow-md py-3"
-          : "bg-transparent py-5"
-      )}
-    >
-      <div className="container mx-auto px-4 flex justify-between items-center">
-        <Link to="/" className="flex items-center">
-          <Shield className="h-8 w-8 text-navy-800" />
-          <div className="ml-2">
-            <span className="text-navy-900 font-montserrat font-bold text-xl block leading-tight">
-              FORTIS SHIELD
-            </span>
-            <span className="text-gold-500 font-montserrat text-xs tracking-wider">
-              SECURITY SERVICES
-            </span>
-          </div>
-        </Link>
-
-        {/* Desktop Navigation */}
-        <nav className="hidden lg:flex items-center space-x-8">
-          {navLinks.map((link) => (
-            <Link
-              key={link.name}
-              to={link.path}
-              className="text-navy-800 hover:text-gold-500 font-medium transition-colors"
-            >
-              {link.name}
+    <nav className="bg-white shadow-sm border-b border-gray-100 relative z-10">
+      <div className="container mx-auto px-4">
+        <div className="flex justify-between h-20">
+          {/* Logo */}
+          <div className="flex-shrink-0 flex items-center">
+            <Link to="/" className="flex items-center">
+              <ShieldCheck className="w-8 h-8 text-navy-800 mr-2" />
+              <span className="text-2xl font-bold text-navy-900">Fortis<span className="text-gold-500">Shield</span></span>
             </Link>
-          ))}
-          <Link
-            to="/contact"
-            className="btn-primary"
-          >
-            Schedule Consultation
-          </Link>
-        </nav>
+          </div>
 
-        {/* Mobile Menu Button */}
-        <button
-          className="lg:hidden text-navy-800"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          {isMenuOpen ? (
-            <X className="h-6 w-6" />
-          ) : (
-            <Menu className="h-6 w-6" />
-          )}
-        </button>
-      </div>
-
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <nav className="lg:hidden bg-white border-t border-gray-100 absolute w-full left-0 animate-fade-in">
-          <div className="container mx-auto px-4 py-4 flex flex-col space-y-4">
-            {navLinks.map((link) => (
-              <Link
-                key={link.name}
+          {/* Desktop navigation links */}
+          <div className="hidden md:flex items-center space-x-2">
+            {links.map((link) => (
+              <Link 
+                key={link.path} 
                 to={link.path}
-                className="text-navy-800 hover:text-gold-500 py-2 font-medium transition-colors"
-                onClick={() => setIsMenuOpen(false)}
+                className={`px-3 py-2 rounded-md text-sm font-medium ${
+                  isActive(link.path)
+                    ? "bg-navy-800 text-white"
+                    : "text-navy-600 hover:bg-navy-100 hover:text-navy-900"
+                }`}
               >
                 {link.name}
               </Link>
             ))}
-            <Link
-              to="/contact"
-              className="btn-primary text-center"
-              onClick={() => setIsMenuOpen(false)}
+
+            <Button 
+              variant="secondary" 
+              className="ml-4 bg-gold-500 hover:bg-gold-600 text-navy-900 px-6"
             >
-              Schedule Consultation
-            </Link>
+              Client Portal
+            </Button>
           </div>
-        </nav>
+
+          {/* Mobile menu button */}
+          <div className="md:hidden flex items-center">
+            <button
+              className="inline-flex items-center justify-center p-2 rounded-md text-navy-800 hover:text-navy-900 hover:bg-navy-100 focus:outline-none"
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            >
+              {mobileMenuOpen ? (
+                <X className="block h-6 w-6" aria-hidden="true" />
+              ) : (
+                <Menu className="block h-6 w-6" aria-hidden="true" />
+              )}
+            </button>
+          </div>
+        </div>
+      </div>
+
+      {/* Mobile menu */}
+      {mobileMenuOpen && (
+        <div className="md:hidden bg-white border-t border-gray-100 shadow-lg">
+          <div className="container mx-auto px-4 pt-2 pb-3 space-y-1">
+            {links.map((link) => (
+              <Link
+                key={link.path}
+                to={link.path}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  isActive(link.path)
+                    ? "bg-navy-800 text-white"
+                    : "text-navy-600 hover:bg-navy-100 hover:text-navy-900"
+                }`}
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                {link.name}
+              </Link>
+            ))}
+            <div className="pt-2 mt-2 border-t border-gray-100">
+              <Button 
+                variant="secondary" 
+                className="w-full bg-gold-500 hover:bg-gold-600 text-navy-900"
+              >
+                Client Portal
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
-    </header>
+    </nav>
   );
 };
 

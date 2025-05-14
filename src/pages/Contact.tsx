@@ -1,6 +1,4 @@
 
-import Navbar from "@/components/Navbar";
-import Footer from "@/components/Footer";
 import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/components/ContactForm";
 import { Phone, Mail, Map } from "lucide-react";
@@ -8,7 +6,6 @@ import { Phone, Mail, Map } from "lucide-react";
 const Contact = () => {
   return (
     <>
-      <Navbar />
       <PageHeader
         title="Contact Fortis Shield"
         subtitle="Get in touch with our security experts to discuss your specific requirements."
@@ -110,8 +107,6 @@ const Contact = () => {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 };
