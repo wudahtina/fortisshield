@@ -90,7 +90,7 @@ const AssetTracker = () => {
               <div className="flex-1">
                 <Input
                   type="text"
-                  placeholder="e.g., ASSET-KSSCL-UK-78329A1"
+                  placeholder="e.g., ASSET-*****-*****-****"
                   value={assetId}
                   onChange={(e) => setAssetId(e.target.value)}
                   className="border-navy-300"
