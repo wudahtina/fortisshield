@@ -92,7 +92,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <Mail size={18} className="text-gold-500 mr-3 flex-shrink-0 mt-1" />
-                <span className="text-gray-300">info@fortisshield.co.uk</span>
+                <span className="text-gray-300">info@fortisshield.org</span>
               </li>
               <li className="flex">
                 <Map size={18} className="text-gold-500 mr-3 flex-shrink-0 mt-1" />
@@ -106,7 +106,8 @@ const Footer = () => {
         
         <div className="flex flex-col md:flex-row justify-between items-center">
           <p className="text-gray-400 text-sm mb-4 md:mb-0">
-            &copy; {new Date().getFullYear()} Fortis Shield Security Services. All rights reserved.
+            &copy; 2015 - <script>document.write(new Date().getFullYear());</script> Fortis Shield Security Services. All rights reserved.
+
           </p>
           <div className="flex space-x-6">
             <Link to="/privacy" className="text-gray-400 text-sm hover:text-gold-500 transition-colors">
