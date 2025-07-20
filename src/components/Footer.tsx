@@ -88,7 +88,7 @@ const Footer = () => {
             <ul className="space-y-3">
               <li className="flex">
                 <Phone size={18} className="text-gold-500 mr-3 flex-shrink-0 mt-1" />
-                <span className="text-gray-300">+44 20 1234 5678</span>
+                <span className="text-gray-300">+447520609888</span>
               </li>
               <li className="flex">
                 <Mail size={18} className="text-gold-500 mr-3 flex-shrink-0 mt-1" />
@@ -96,7 +96,7 @@ const Footer = () => {
               </li>
               <li className="flex">
                 <Map size={18} className="text-gold-500 mr-3 flex-shrink-0 mt-1" />
-                <span className="text-gray-300">1 Churchill Place, Canary Wharf, London E14 5HP, United Kingdom</span>
+                <span className="text-gray-300">ADDRESS 82 Wade Lane, Salthouse, NR25 9SP, United Kingdom</span>
               </li>
             </ul>
           </div>

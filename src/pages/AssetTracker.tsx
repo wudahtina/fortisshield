@@ -223,7 +223,7 @@ const AssetTracker = () => {
               All data is protected with 256-bit encryption and transmitted via secure SSL connection.
             </p>
             <p>
-              For support, contact our secure asset team at secure-assets@fortisshield.com or +44 20 7946 0473.
+              For support, contact our secure asset team at info@fortisshield.org or +447520609888.
             </p>
           </CardFooter>
         </Card>

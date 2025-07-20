@@ -393,6 +393,82 @@ const Services = () => {
         </div>
       </section>
 
+      <section className="section-padding bg-gray-50" id="diamonds-minerals">
+        <div className="container mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+              <div className="flex items-center mb-6">
+                <Shield className="h-10 w-10 text-gold-500 mr-4" />
+                <h2 className="text-3xl font-bold text-navy-900">Diamonds & Minerals Security</h2>
+              </div>
+              <p className="text-gray-600 mb-6">
+                Our Diamonds & Minerals Security service offers specialized protection, secure storage, and logistics for precious stones and rare minerals. We understand the unique risks and requirements of handling these high-value assets, providing tailored solutions for collectors, investors, and businesses worldwide.
+              </p>
+              <h3 className="text-xl font-bold text-navy-800 mb-4">Key Features:</h3>
+              <ul className="space-y-3 mb-8">
+                <li className="flex items-start">
+                  <div className="bg-navy-100 h-6 w-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span className="text-navy-800 font-semibold text-sm">✓</span>
+                  </div>
+                  <span className="text-gray-600">Secure vault storage for diamonds and minerals</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="bg-navy-100 h-6 w-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span className="text-navy-800 font-semibold text-sm">✓</span>
+                  </div>
+                  <span className="text-gray-600">Discreet, insured global transportation</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="bg-navy-100 h-6 w-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span className="text-navy-800 font-semibold text-sm">✓</span>
+                  </div>
+                  <span className="text-gray-600">Expert handling and chain-of-custody assurance</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="bg-navy-100 h-6 w-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span className="text-navy-800 font-semibold text-sm">✓</span>
+                  </div>
+                  <span className="text-gray-600">Customs clearance and regulatory compliance</span>
+                </li>
+                <li className="flex items-start">
+                  <div className="bg-navy-100 h-6 w-6 rounded-full flex items-center justify-center mr-3 mt-1">
+                    <span className="text-navy-800 font-semibold text-sm">✓</span>
+                  </div>
+                  <span className="text-gray-600">Real-time asset tracking and monitoring</span>
+                </li>
+              </ul>
+              <a href="/contact" className="btn-primary inline-flex items-center">
+                Secure Your Diamonds & Minerals
+                <ArrowRight className="ml-2 h-5 w-5" />
+              </a>
+            </div>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img
+                  src="/diamonds1.jpeg"
+                  alt="Loose Diamonds"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden">
+                <img
+                  src="/diamonds2.jpeg"
+                  alt="Brilliant Diamond"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+              <div className="bg-navy-100 h-64 rounded-lg overflow-hidden col-span-2">
+                <img
+                  src="/diamonds3.jpeg"
+                  alt="Mineral Specimens"
+                  className="w-full h-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <CtaSection />
     </>
   );

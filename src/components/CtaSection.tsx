@@ -36,12 +36,12 @@ const CtaSection = () => {
               <div className="space-y-6 text-center lg:text-left">
                 <div>
                   <p className="text-gold-500 font-semibold mb-1">Call Us</p>
-                  <p className="text-white text-xl">+44 20 1234 5678</p>
+                  <p className="text-white text-xl">+447520609888</p>
                 </div>
                 
                 <div>
                   <p className="text-gold-500 font-semibold mb-1">Email Us</p>
-                  <p className="text-white text-xl">info@fortisshield.co.uk</p>
+                  <p className="text-white text-xl">info@fortisshield.org</p>
                 </div>
                 
                 <div>

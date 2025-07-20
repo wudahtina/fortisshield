@@ -34,7 +34,7 @@ const Contact = () => {
                     <Phone className="h-5 w-5 text-gold-500 mr-3 flex-shrink-0 mt-1" />
                     <div>
                       <p className="font-semibold">Phone</p>
-                      <p className="text-gray-300">+44 20 1234 5678</p>
+                      <p className="text-gray-300">+447520609888</p>
                     </div>
                   </div>
                   
@@ -51,9 +51,8 @@ const Contact = () => {
                     <div>
                       <p className="font-semibold">Head Office</p>
                       <p className="text-gray-300">
-                        1 Churchill Place<br />
-                        Canary Wharf<br />
-                        London E14 5HP<br />
+                        ADDRESS 82 Wade Lane<br />
+                        Salthouse, NR25 9SP<br />
                         United Kingdom
                       </p>
                     </div>
@@ -67,7 +66,7 @@ const Contact = () => {
                   For urgent security matters requiring immediate attention, please call our
                   24/7 emergency response line:
                 </p>
-                <p className="text-navy-900 text-2xl font-bold">+44 20 9876 5432</p>
+                <p className="text-navy-900 text-2xl font-bold">+447520609888</p>
               </div>
             </div>
           </div>
