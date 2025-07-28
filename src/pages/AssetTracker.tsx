@@ -49,8 +49,8 @@ const AssetTracker = () => {
       year: 'numeric',
       month: 'short',
       day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit'
+      // hour: '2-digit',
+      // minute: '2-digit'
     }).format(date);
   };
 
@@ -141,23 +141,7 @@ const AssetTracker = () => {
                       </div>
                     </div>
                     
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <Clock className="h-5 w-5 text-navy-600 mt-1 mr-2" />
-                        <div>
-                          <p className="text-sm text-gray-500">Last Verification</p>
-                          <p className="font-medium">{formatDate(certificate.last_verification_date)}</p>
-                        </div>
-                      </div>
-                      
-                      <div className="flex items-start">
-                        <Clock className="h-5 w-5 text-navy-600 mt-1 mr-2" />
-                        <div>
-                          <p className="text-sm text-gray-500">Next Verification</p>
-                          <p className="font-medium">{formatDate(certificate.next_verification_date)}</p>
-                        </div>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
                 
@@ -208,10 +192,7 @@ const AssetTracker = () => {
                       <p className="text-sm text-gray-500">Consignment Content</p>
                       <p className="font-medium">{certificate.consignment_content}</p>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-500">Document Expiry</p>
-                      <p className="font-medium">{formatDate(certificate.document_expiry)}</p>
-                    </div>
+                  
                   </div>
                 </div>
               </div>
